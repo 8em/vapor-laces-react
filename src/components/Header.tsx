@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
+import ChevronDownIcon from "./UI/ChevronDownIcon";
 
 // const Header = () => {
 //   return (
@@ -69,42 +70,48 @@ import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 //   )
 // }
 
-interface DropdownItem {
+interface DropdownLink {
   id: string;
   name: string;
   imageUrl?: string;
+  hasMenu?: boolean;
 }
 
-interface DropdownProps {
+interface DropdownLinkProps {
   id: string;
   title: string;
-  data: DropdownItem[];
+  data: DropdownLink[];
   hasImage?: boolean;
   style?: string;
   selectedIf?: string;
   onSelect?: (id: string) => void;
 }
 
-const headerLinks: {label: string; path: string}[] = [
-  { label: "Чистка", path: "/services"},
-  { label: "Галерея", path: "/gallery"},
-  { label: "Про Нас", path: "/about-us"}
-]
-
+const headerLinks: { label: string; path: string; hasMenu?: boolean }[] = [
+  { label: "Чистка", path: "/services", hasMenu: true },
+  { label: "Галерея", path: "/gallery" },
+  { label: "Про Нас", path: "/about-us" },
+];
 
 const Header = () => {
   return (
     <header className="sticky z-50 top-0 inset-x-0 bg-white shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
-        <ul className="flex flex-row gap-8 list-none p-0">
-          {
-            headerLinks.map((links) => {
-              return (
-                <li><Link className="cursor-pointer" href="{links.path}">{links.label}</Link></li>
-              )
-            })
-          }
-          
+        <ul className="flex text-sm flex-row gap-8 list-none p-0">
+          {headerLinks.map((link) => {
+            return (
+              
+              <li key={link.path}>
+                <Link
+                  className="flex flex-row items-center justify-center gap-1 cursor-pointer"
+                  href={link.path}
+                >
+                  {link.label}
+                  {link.hasMenu && <ChevronDownIcon />}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </header>
