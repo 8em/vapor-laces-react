@@ -73,7 +73,8 @@ import ChevronDownIcon from "./UI/ChevronDownIcon";
 interface DropdownLink {
   id: string;
   name: string;
-  imageUrl?: string;
+  label: string;
+  path: string;
   hasMenu?: boolean;
 }
 
@@ -83,14 +84,20 @@ interface DropdownLinkProps {
   data: DropdownLink[];
   hasImage?: boolean;
   style?: string;
-  selectedIf?: string;
+  selectedId?: string;
   onSelect?: (id: string) => void;
 }
 
-const headerLinks: { label: string; path: string; hasMenu?: boolean }[] = [
-  { label: "Чистка", path: "/services", hasMenu: true },
-  { label: "Галерея", path: "/gallery" },
-  { label: "Про Нас", path: "/about-us" },
+const headerLinks: DropdownLink[] = [
+  {
+    id: "services",
+    name: "Чистка",
+    label: "Чистка",
+    path: "/services",
+    hasMenu: true,
+  },
+  { id: "gallery", name: "Галерея", label: "Галерея", path: "/gallery" },
+  { id: "about-us", name: "Про Нас", label: "Про Нас", path: "/about-us" },
 ];
 
 const Header = () => {
@@ -100,8 +107,7 @@ const Header = () => {
         <ul className="flex text-sm flex-row gap-8 list-none p-0">
           {headerLinks.map((link) => {
             return (
-              
-              <li key={link.path}>
+              <li key={link.id}>
                 <Link
                   className="flex flex-row items-center justify-center gap-1 cursor-pointer"
                   href={link.path}
