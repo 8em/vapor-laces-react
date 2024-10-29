@@ -1,0 +1,7 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontLigatures": false,
+  "editor.formatOnSave": true,
+  "editor.fontSize": 16,
+  "editor.fontFamily": "Inconsolata"
+}
