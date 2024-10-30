@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-import ChevronDownIcon from "./UI/ChevronDownIcon";
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import ChevronDownIcon from './UI/ChevronDownIcon'
 
 // const Header = () => {
 //   return (
@@ -71,34 +71,34 @@ import ChevronDownIcon from "./UI/ChevronDownIcon";
 // }
 
 interface DropdownLink {
-  id: string;
-  name: string;
-  label: string;
-  path: string;
-  hasMenu?: boolean;
+  id: string
+  name: string
+  label: string
+  path: string
+  hasMenu?: boolean
 }
 
 interface DropdownLinkProps {
-  id: string;
-  title: string;
-  data: DropdownLink[];
-  hasImage?: boolean;
-  style?: string;
-  selectedId?: string;
-  onSelect?: (id: string) => void;
+  id: string
+  title: string
+  data: DropdownLink[]
+  hasImage?: boolean
+  style?: string
+  selectedId?: string
+  onSelect?: (id: string) => void
 }
 
 const headerLinks: DropdownLink[] = [
   {
-    id: "services",
-    name: "Чистка",
-    label: "Чистка",
-    path: "/services",
+    id: 'services',
+    name: 'Чистка',
+    label: 'Чистка',
+    path: '/services',
     hasMenu: true,
   },
-  { id: "gallery", name: "Галерея", label: "Галерея", path: "/gallery" },
-  { id: "about-us", name: "Про Нас", label: "Про Нас", path: "/about-us" },
-];
+  { id: 'gallery', name: 'Галерея', label: 'Галерея', path: '/gallery' },
+  { id: 'about-us', name: 'Про Нас', label: 'Про Нас', path: '/about-us' },
+]
 
 const Header = () => {
   return (
@@ -109,19 +109,19 @@ const Header = () => {
             return (
               <li key={link.id}>
                 <Link
-                  className="flex flex-row items-center justify-center gap-1 cursor-pointer"
+                  className="flex flex-row items-center justify-center gap-1 cursor-pointer hover:text-primary"
                   href={link.path}
                 >
                   {link.label}
                   {link.hasMenu && <ChevronDownIcon />}
                 </Link>
               </li>
-            );
+            )
           })}
         </ul>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
