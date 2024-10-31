@@ -5,6 +5,7 @@ import Marquee from 'react-fast-marquee'
 import PrimaryButton from '@/components/PrimaryButton'
 import SecondaryButton from '@/components/SecondaryButton'
 
+
 export default function Home() {
   return (
     <div>

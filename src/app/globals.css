@@ -2,18 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* --foreground-rgb: 0, 0, 0;
+/* :root {
+  --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255; */
+  --background-end-rgb: 255, 255, 255;
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 300;
+  src: url("/fonts/Unbounded-Light.woff2") format("woff2");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0; */
-  }
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/Unbounded-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 500;
+  src: url("/fonts/Unbounded-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unbounded";
+  font-style: normal;
+  font-weight: 700;
+  src: url("/fonts/Unbounded-Bold.woff2") format("woff2");
 }
 
 body {
