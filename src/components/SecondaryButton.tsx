@@ -1,5 +1,5 @@
-import { Button as HeadlessButton } from "@headlessui/react";
-import { cn } from "@/lib/utils";
+import { Button as HeadlessButton } from '@headlessui/react'
+import { cn } from '@/lib/utils'
 
 const SecondaryButton = ({
   children,
@@ -7,27 +7,27 @@ const SecondaryButton = ({
   active = false,
   ...props
 }: {
-  children: React.ReactNode;
-  disabled?: boolean;
-  active?: boolean;
-  [x: string]: any;
+  children: React.ReactNode
+  disabled?: boolean
+  active?: boolean
+  [x: string]: any
 }) => (
   <HeadlessButton
     className={cn(
-      "w-full lg:w-60 py-3 transition-colors rounded-3xl border border-gray-300",
+      'w-full lg:w-max py-3 px-5 transition-colors rounded-3xl border border-gray-300',
       disabled
-        ? "bg-gray-300 cursor-not-allowed text-gray-500 border border-gray-400"
+        ? 'bg-gray-300 cursor-not-allowed text-gray-500 border border-gray-400'
         : active
-        ? "bg-transparent text-black"
-        : "bg-gray-100 text-black border border-gray-300",
-      "hover:bg-gray-200",
-      "text-sm"
+        ? 'bg-transparent text-black'
+        : 'bg-gray-100 text-black border border-gray-300',
+      'hover:bg-gray-200',
+      'text-sm'
     )}
     disabled={disabled}
     {...props}
   >
     {children}
   </HeadlessButton>
-);
+)
 
-export default SecondaryButton;
+export default SecondaryButton

@@ -1,68 +1,70 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
-import ChevronDownIcon from "./UI/ChevronDownIcon";
-import ChevronUpIcon from "./UI/ChevronUpIcon";
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react'
+import ChevronDownIcon from './UI/ChevronDownIcon'
+import ChevronUpIcon from './UI/ChevronUpIcon'
+import { motion } from 'framer-motion'
 
 interface NavLink {
-  id: string;
-  name: string;
-  label: string;
-  path: string;
-  hasMenu?: boolean;
-  subLinks?: NavLink[];
+  id: string
+  name: string
+  label: string
+  path: string
+  hasMenu?: boolean
+  subLinks?: NavLink[]
 }
 
 const headerLinks: NavLink[] = [
   {
-    id: "services",
-    name: "Чистка",
-    label: "Чистка",
-    path: "/services",
+    id: 'services',
+    name: 'Чистка',
+    label: 'Чистка',
+    path: '/services',
     hasMenu: true,
     subLinks: [
       {
-        id: "standard",
-        name: "Стандарт",
-        label: "Стандарт",
-        path: "/services/standard",
+        id: 'standard',
+        name: 'Стандарт',
+        label: 'Стандарт',
+        path: '/services/standard',
       },
       {
-        id: "premium",
-        name: "Преміум",
-        label: "Преміум",
-        path: "/services/premium",
+        id: 'premium',
+        name: 'Преміум',
+        label: 'Преміум',
+        path: '/services/premium',
       },
       {
-        id: "hightops",
-        name: "Хайтопи",
-        label: "Хайтопи",
-        path: "/services/hightops",
+        id: 'hightops',
+        name: 'Хайтопи',
+        label: 'Хайтопи',
+        path: '/services/hightops',
       },
     ],
   },
-  { id: "gallery", name: "Галерея", label: "Галерея", path: "/gallery" },
-  { id: "about-us", name: "Про Нас", label: "Про Нас", path: "/about-us" },
-];
+  { id: 'gallery', name: 'Галерея', label: 'Галерея', path: '/gallery' },
+  { id: 'about-us', name: 'Про Нас', label: 'Про Нас', path: '/about-us' },
+]
 
 const Header = () => {
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
-
+  const [openMenu, setOpenMenu] = useState<string | null>(null)
   const toggleMenu = (id: string, hasMenu?: boolean) => {
-    if (!hasMenu) return;
-    setOpenMenu((prevOpenMenu) => (prevOpenMenu === id ? null : id));
-  };
-
+    if (!hasMenu) return
+    setOpenMenu((prevOpenMenu) => (prevOpenMenu === id ? null : id))
+  }
   const handleMouseEnter = (id: string, hasMenu?: boolean) => {
-    if (!hasMenu) return;
-    setOpenMenu(id);
-  };
-
+    if (!hasMenu) return
+    setOpenMenu(id)
+  }
   const handleMouseLeave = () => {
-    setOpenMenu(null);
-  };
+    setOpenMenu(null)
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <header className="sticky z-50 top-0 inset-x-0 bg-white border-b border-gray-300">
@@ -85,13 +87,16 @@ const Header = () => {
             </svg>
           </Link>
         </div>
-        <nav className="pl-[20px]">
+        <nav className="pl-[36px]">
           <ul className="flex text-sm flex-row gap-8 list-none p-0">
-            {headerLinks.map((link) => (
-              <li
-                id={link.id}
+            {headerLinks.map((link, index) => (
+              <motion.li
                 key={link.id}
                 className="relative group"
+                variants={itemVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{ delay: index * 0.05 }}
                 onMouseEnter={() => handleMouseEnter(link.id, link.hasMenu)}
                 onMouseLeave={handleMouseLeave}
               >
@@ -103,7 +108,7 @@ const Header = () => {
                       aria-label="Toggle dropdown"
                       onClick={() => toggleMenu(link.id, link.hasMenu)}
                     >
-                      {link.label}{" "}
+                      {link.label}{' '}
                       {openMenu === link.id ? (
                         <ChevronUpIcon />
                       ) : (
@@ -133,13 +138,13 @@ const Header = () => {
                     {link.label}
                   </Link>
                 )}
-              </li>
+              </motion.li>
             ))}
           </ul>
         </nav>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
